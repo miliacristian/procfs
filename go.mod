@@ -1,4 +1,4 @@
-module github.com/prometheus/procfs
+module github.com/miliacristian/procfs
 
 go 1.20
 
