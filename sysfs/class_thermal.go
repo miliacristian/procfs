@@ -24,6 +24,8 @@ import (
 	"syscall"
 
 	"github.com/prometheus/procfs/internal/util"
+
+	"fmt"
 )
 
 // ClassThermalZoneStats contains info from files in /sys/class/thermal/thermal_zone<zone>
@@ -43,6 +45,7 @@ func (fs FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 	zones, err := filepath.Glob(fs.sys.Path("class/thermal/thermal_zone[0-9]*"))
 	//comment
 	//comment 2
+	fmt.Println("called function ClassThermalZoneStats")
 	if err != nil {
 		return nil, err
 	}
