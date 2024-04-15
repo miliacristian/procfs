@@ -42,6 +42,7 @@ type ClassThermalZoneStats struct {
 func (fs FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 	zones, err := filepath.Glob(fs.sys.Path("class/thermal/thermal_zone[0-9]*"))
 	//comment
+	//comment 2
 	if err != nil {
 		return nil, err
 	}
