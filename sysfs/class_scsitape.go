@@ -22,7 +22,7 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/prometheus/procfs/internal/util"
+	"github.com/miliacristian/procfs/internal/util"
 )
 
 const scsiTapeClassPath = "class/scsi_tape"

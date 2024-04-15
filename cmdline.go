@@ -16,7 +16,7 @@ package procfs
 import (
 	"strings"
 
-	"github.com/prometheus/procfs/internal/util"
+	"github.com/miliacristian/procfs/internal/util"
 )
 
 // CmdLine returns the command line of the kernel.

@@ -21,7 +21,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/prometheus/procfs/internal/util"
+	"github.com/miliacristian/procfs/internal/util"
 )
 
 // For the proc file format details,

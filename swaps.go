@@ -20,7 +20,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/prometheus/procfs/internal/util"
+	"github.com/miliacristian/procfs/internal/util"
 )
 
 // Swap represents an entry in /proc/swaps.

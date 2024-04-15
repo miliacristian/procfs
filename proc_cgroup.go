@@ -20,7 +20,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/prometheus/procfs/internal/util"
+	"github.com/miliacristian/procfs/internal/util"
 )
 
 // Cgroup models one line from /proc/[pid]/cgroup. Each Cgroup struct describes the placement of a PID inside a

@@ -25,7 +25,7 @@ Prometheus uses GitHub to manage reviews of pull requests.
 
 Should you wish to work on an issue, please claim it first by commenting on the GitHub issue that you want to work on it. This is to prevent duplicated efforts from contributors on the same issue.
 
-Please check the [`help-wanted`](https://github.com/prometheus/procfs/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) label to find issues that are good for getting started. If you have questions about one of the issues, with or without the tag, please comment on them and one of the maintainers will clarify it. For a quicker response, contact us over [IRC](https://prometheus.io/community).
+Please check the [`help-wanted`](https://github.com/miliacristian/procfs/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) label to find issues that are good for getting started. If you have questions about one of the issues, with or without the tag, please comment on them and one of the maintainers will clarify it. For a quicker response, contact us over [IRC](https://prometheus.io/community).
 
 For quickly compiling and testing your changes do:
 ```

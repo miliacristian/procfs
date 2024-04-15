@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/prometheus/procfs/internal/util"
+	"github.com/miliacristian/procfs/internal/util"
 )
 
 // Originally, this USER_HZ value was dynamically retrieved via a sysconf call
@@ -34,7 +34,7 @@ import (
 // See also the following discussions:
 //
 // - https://github.com/prometheus/node_exporter/issues/52
-// - https://github.com/prometheus/procfs/pull/2
+// - https://github.com/miliacristian/procfs/pull/2
 // - http://stackoverflow.com/questions/17410841/how-does-user-hz-solve-the-jiffy-scaling-issue
 const userHZ = 100
 

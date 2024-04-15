@@ -23,7 +23,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/prometheus/procfs/internal/util"
+	"github.com/miliacristian/procfs/internal/util"
 
 	"fmt"
 )
