@@ -26,6 +26,7 @@ import (
 	"github.com/miliacristian/procfs/internal/util"
 
 	"fmt"
+	"io/fs"
 )
 
 // ClassThermalZoneStats contains info from files in /sys/class/thermal/thermal_zone<zone>
@@ -47,6 +48,10 @@ func (fs FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 	//comment 2
 	fmt.Println("called function ClassThermalZoneStats")
 	if err != nil {
+	    fmt.Println("message1 error function ClassThermalZoneStats")
+	    if errors.As(err, new(*fs.PathError)){
+            fmt.Println("message2 error function ClassThermalZoneStats")
+		}
 		return nil, err
 	}
 
@@ -57,6 +62,10 @@ func (fs FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 			if errors.Is(err, syscall.ENODATA) {
 				continue
 			}
+			fmt.Println("message3 error function ClassThermalZoneStats")
+            if errors.As(err, new(*fs.PathError)){
+                fmt.Println("message4 error function ClassThermalZoneStats")
+            }
 			return nil, err
 		}
 		zoneStats.Name = strings.TrimPrefix(filepath.Base(zone), "thermal_zone")
@@ -69,20 +78,36 @@ func parseClassThermalZone(zone string) (ClassThermalZoneStats, error) {
 	// Required attributes.
 	zoneType, err := util.SysReadFile(filepath.Join(zone, "type"))
 	if err != nil {
+	    fmt.Println("message5 error function ClassThermalZoneStats")
+	    if errors.As(err, new(*fs.PathError)){
+            fmt.Println("message6 error function ClassThermalZoneStats")
+		}
 		return ClassThermalZoneStats{}, err
 	}
 	zonePolicy, err := util.SysReadFile(filepath.Join(zone, "policy"))
 	if err != nil {
+	    fmt.Println("message7 error function ClassThermalZoneStats")
+	    if errors.As(err, new(*fs.PathError)){
+            fmt.Println("message8 error function ClassThermalZoneStats")
+		}
 		return ClassThermalZoneStats{}, err
 	}
 	zoneTemp, err := util.ReadIntFromFile(filepath.Join(zone, "temp"))
 	if err != nil {
+	    fmt.Println("message9 error function ClassThermalZoneStats")
+	    if errors.As(err, new(*fs.PathError)){
+            fmt.Println("message10 error function ClassThermalZoneStats")
+		}
 		return ClassThermalZoneStats{}, err
 	}
 
 	// Optional attributes.
 	mode, err := util.SysReadFile(filepath.Join(zone, "mode"))
 	if err != nil && !os.IsNotExist(err) && !os.IsPermission(err) {
+	    fmt.Println("message11 error function ClassThermalZoneStats")
+	    if errors.As(err, new(*fs.PathError)){
+            fmt.Println("message12 error function ClassThermalZoneStats")
+		}
 		return ClassThermalZoneStats{}, err
 	}
 	zoneMode := util.ParseBool(mode)
@@ -92,6 +117,10 @@ func parseClassThermalZone(zone string) (ClassThermalZoneStats, error) {
 	if os.IsNotExist(err) || os.IsPermission(err) {
 		zonePassive = nil
 	} else if err != nil {
+	    fmt.Println("message13 error function ClassThermalZoneStats")
+	    if errors.As(err, new(*fs.PathError)){
+            fmt.Println("message14 error function ClassThermalZoneStats")
+		}
 		return ClassThermalZoneStats{}, err
 	} else {
 		zonePassive = &passive
