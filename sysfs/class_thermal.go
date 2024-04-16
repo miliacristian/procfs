@@ -57,9 +57,13 @@ func (fso FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 	}
 
 	stats := make([]ClassThermalZoneStats, 0, len(zones))
+	fmt.Println("len zone:",len(zones))
 	for _, zone := range zones {
+	    fmt.Println("for zone:",zone)
 		zoneStats, err := parseClassThermalZone(zone)
+		fmt.Println("zoneStats:",zoneStats)
 		if err != nil {
+		    fmt.Println("message2.1 error function ClassThermalZoneStats")
 			if errors.Is(err, syscall.ENODATA) {
 				continue
 			}
@@ -72,6 +76,7 @@ func (fso FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 		zoneStats.Name = strings.TrimPrefix(filepath.Base(zone), "thermal_zone")
 		stats = append(stats, zoneStats)
 	}
+	fmt.Println("stats:",stats)
 	return stats, nil
 }
 
