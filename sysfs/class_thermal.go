@@ -26,7 +26,7 @@ import (
 	"github.com/miliacristian/procfs/internal/util"
 
 	"fmt"
-	"io/fs"
+	fsp "io/fs"
 
 )
 
@@ -43,14 +43,14 @@ type ClassThermalZoneStats struct {
 }
 
 // ClassThermalZoneStats returns Thermal Zone metrics for all zones.
-func (fso FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
-	zones, err := filepath.Glob(fso.sys.Path("class/thermal/thermal_zone[0-9]*"))
+func (fs FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
+	zones, err := filepath.Glob(fs.sys.Path("class/thermal/thermal_zone[0-9]*"))
 	//comment
 	//comment 2
 	fmt.Println("called function ClassThermalZoneStats")
 	if err != nil {
 	    fmt.Println("message1 error function ClassThermalZoneStats")
-	    if errors.As(err, new(*fs.PathError)){
+	    if errors.As(err, new(*fsp.PathError)){
             fmt.Println("message2 error function ClassThermalZoneStats")
 		}
 		return nil, err
@@ -65,11 +65,11 @@ func (fso FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 		fmt.Println("zoneStats:",zoneStats)
 		if err != nil {
 		    fmt.Println("message2.1 error function ClassThermalZoneStats")
-			if errors.Is(err, syscall.ENODATA) || errors.As(err, new(*fs.PathError)) {
+			if errors.Is(err, syscall.ENODATA) || errors.As(err, new(*fsp.PathError)) {
 				continue
 			}
 			fmt.Println("message3 error function ClassThermalZoneStats")
-            if errors.As(err, new(*fs.PathError)){
+            if errors.As(err, new(*fsp.PathError)){
                 fmt.Println("message4 error function ClassThermalZoneStats")
             }
 			return nil, err
@@ -86,7 +86,7 @@ func parseClassThermalZone(zone string) (ClassThermalZoneStats, error) {
 	zoneType, err := util.SysReadFile(filepath.Join(zone, "type"))
 	if err != nil {
 	    fmt.Println("message5 error function ClassThermalZoneStats")
-	    if errors.As(err, new(*fs.PathError)){
+	    if errors.As(err, new(*fsp.PathError)){
             fmt.Println("message6 error function ClassThermalZoneStats")
 		}
 		return ClassThermalZoneStats{}, err
@@ -94,7 +94,7 @@ func parseClassThermalZone(zone string) (ClassThermalZoneStats, error) {
 	zonePolicy, err := util.SysReadFile(filepath.Join(zone, "policy"))
 	if err != nil {
 	    fmt.Println("message7 error function ClassThermalZoneStats")
-	    if errors.As(err, new(*fs.PathError)){
+	    if errors.As(err, new(*fsp.PathError)){
             fmt.Println("message8 error function ClassThermalZoneStats")
 		}
 		return ClassThermalZoneStats{}, err
@@ -102,7 +102,7 @@ func parseClassThermalZone(zone string) (ClassThermalZoneStats, error) {
 	zoneTemp, err := util.ReadIntFromFile(filepath.Join(zone, "temp"))
 	if err != nil {
 	    fmt.Println("message9 error function ClassThermalZoneStats")
-	    if errors.As(err, new(*fs.PathError)){
+	    if errors.As(err, new(*fsp.PathError)){
             fmt.Println("message10 error function ClassThermalZoneStats")
 		}
 		return ClassThermalZoneStats{}, err
@@ -112,7 +112,7 @@ func parseClassThermalZone(zone string) (ClassThermalZoneStats, error) {
 	mode, err := util.SysReadFile(filepath.Join(zone, "mode"))
 	if err != nil && !os.IsNotExist(err) && !os.IsPermission(err) {
 	    fmt.Println("message11 error function ClassThermalZoneStats")
-	    if errors.As(err, new(*fs.PathError)){
+	    if errors.As(err, new(*fsp.PathError)){
             fmt.Println("message12 error function ClassThermalZoneStats")
 		}
 		return ClassThermalZoneStats{}, err
@@ -125,7 +125,7 @@ func parseClassThermalZone(zone string) (ClassThermalZoneStats, error) {
 		zonePassive = nil
 	} else if err != nil {
 	    fmt.Println("message13 error function ClassThermalZoneStats")
-	    if errors.As(err, new(*fs.PathError)){
+	    if errors.As(err, new(*fsp.PathError)){
             fmt.Println("message14 error function ClassThermalZoneStats")
 		}
 		return ClassThermalZoneStats{}, err
