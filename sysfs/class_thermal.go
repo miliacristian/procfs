@@ -65,7 +65,7 @@ func (fso FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 		fmt.Println("zoneStats:",zoneStats)
 		if err != nil {
 		    fmt.Println("message2.1 error function ClassThermalZoneStats")
-			if errors.Is(err, syscall.ENODATA) {
+			if errors.Is(err, syscall.ENODATA) || errors.As(err, new(*fs.PathError)) {
 				continue
 			}
 			fmt.Println("message3 error function ClassThermalZoneStats")
