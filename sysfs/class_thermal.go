@@ -27,7 +27,7 @@ import (
 
 	"fmt"
 	"io/fs"
-	"reflect"
+
 )
 
 // ClassThermalZoneStats contains info from files in /sys/class/thermal/thermal_zone<zone>
