@@ -56,8 +56,9 @@ func (fso FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 		return nil, err
 	}
 
-	stats := make([]ClassThermalZoneStats, 0, len(zones))
 	fmt.Println("len zone:",len(zones))
+	stats := make([]ClassThermalZoneStats, 0, len(zones))
+	fmt.Println("stats before:",stats)
 	for _, zone := range zones {
 	    fmt.Println("for zone:",zone)
 		zoneStats, err := parseClassThermalZone(zone)
@@ -76,7 +77,7 @@ func (fso FS) ClassThermalZoneStats() ([]ClassThermalZoneStats, error) {
 		zoneStats.Name = strings.TrimPrefix(filepath.Base(zone), "thermal_zone")
 		stats = append(stats, zoneStats)
 	}
-	fmt.Println("stats:",stats)
+	fmt.Println("stats after:",stats)
 	return stats, nil
 }
 
